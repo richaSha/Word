@@ -1,8 +1,8 @@
 <a href="/">GO Back<a>
-<h1><%= @lists[@id].word %></h1>
+<h1><%= @lists[@id]['word'] %></h1>
 <p>Defination:</p>
 <ul>
-  <% @lists[@id].defination.each do |item|%>
+  <% @lists[@id]['defination'].each do |item|%>
       <li><%= item%></li>
     <%end%>
 </ul>

@@ -9,6 +9,6 @@
 <h2>Lists</h2>
 <ul>
   <% @lists.each do |list| %>
-    <li><a href="/word/<%= list.id %>"><%= list.word %></a></li>
+    <li><a href="/word/<%= list['id'] %>"><%= list['word'] %></a></li>
   <% end %>
 </ul>

@@ -1,7 +1,7 @@
 class Word
   attr_reader :id
   attr_accessor :word, :defination
-  @@words = []
+  @@words = [{'word' => "consider" , 'id' => 0, 'defination' =>["Consider is a verb that simply means to think about, look at, or judge. Consider, for a moment, the perks of house sitting for your pool-owning neighbors before you immediately refuse their request."]}]
   def initialize(word)
     @word = word
     @defination = []
@@ -9,7 +9,7 @@ class Word
   end
 
   def save
-    @@words.push(self)
+    @@words.push({'word' => @word, 'id' => @id, 'defination' => @defination})
   end
 
   def self.all
@@ -20,8 +20,7 @@ class Word
     it_exists = false
 
     @@words.each do |each_word|
-      binding.pry
-      if each_word.word == word
+      if each_word['word'] == word
         it_exists = true
       end
     end
@@ -29,6 +28,6 @@ class Word
   end
 
   def self.update(id, defination )
-    @@words[id].defination.push(defination)
+    @@words[id]['defination'].push(defination)
   end
 end
