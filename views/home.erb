@@ -1,0 +1,14 @@
+<form action="/" method="post">
+  <div class="input-group">
+    <span class="input-group-addon">Word</span>
+    <input type="text" class="form-control" name="word" placeholder="New Word">
+  </div>
+ <br>
+  <button type="submit" id="add_word" class="btn btn-success">Add</button>
+</form>
+<h2>Lists</h2>
+<ul>
+  <% @lists.each do |list| %>
+    <li><a href="/word/<%= list.id %>"><%= list.word %></a></li>
+  <% end %>
+</ul>
