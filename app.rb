@@ -16,7 +16,6 @@ post("/") do
     words = Word.new(new_word)
     words.save()
   end
-
   @lists = Word.all()
   erb(:home)
 end

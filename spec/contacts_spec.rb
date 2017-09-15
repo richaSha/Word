@@ -1,39 +1,31 @@
 require ('rspec')
 require ('pry')
-require ('./lib/contacts')
+require ('./lib/words')
 
-describe("#contacts") do
-  it("will save data") do
-    contacts = Contacts.new({:first_name=> "jane", :last_name=>"doe", :company=>"amazon", :job_title=>"software developer", :contact=> {:contact_type =>"home", :contact_no => "123456", :contact_details => "4th Ave, Battery, ABC Apartment Belltown"}})
-    contacts.save()
-    expect(contacts.first_name).to(eq("jane"))
+describe("#words") do
+
+  it("will create object word") do
+    word = Word.new("evident")
+    expect(word.word).to(eq("evident"))
   end
 
-  it("will give all items") do
-    contact_list = Contacts.all()
-    expect(contact_list[1].first_name).to(eq("jane"))
+  it("will save word") do
+    word = Word.new("accord")
+    word.save()
+    word_list = Word.all()
+    expect(word_list[word.id]["word"]).to(eq("accord"))
   end
 
-  it("will give contact deatil") do
-    contact_list = Contacts.all()
-    expect(contact_list[1].contact[:contact_details]).to(eq("4th Ave, Battery, ABC Apartment Belltown"))
+  it("will return true if word already exist") do
+    expect(Word.is_word_exist?("accord")).to(eq(true))
   end
 
-  it("will give index of array") do
-    contact_list = Contacts.all()
-    expect(contact_list[1].id).to(eq(1))
+  it("will add defination") do
+    word = Word.new("minute")
+    word.save()
+    Word.update(word.id,"A unit of time equal to 60 seconds or 1/60th of an hour")
+    word_list = Word.all()
+    expect(word_list[word.id]["defination"][0]).to(eq("A unit of time equal to 60 seconds or 1/60th of an hour"))
   end
-
-  it("it should not accept the same first and last name") do
-    expect(Contacts.is_name_exist?("jane", "doe")).to(eq(true))
-  end
-
-  it("should update") do
-    contacts = Contacts.new({:first_name=> "Richa", :last_name=>"Shaurbh", :company=>"amazon", :job_title=>"software developer", :contact=> {:contact_type =>"home", :contact_no => "123456", :contact_details => "4th Ave, Battery, ABC Apartment Belltown"}})
-    contacts.save()
-    Contacts.update({:id => 2, :company=>"microsoft"})
-    contact_list = Contacts.all()
-    expect(contact_list[2].company).to(eq("microsoft"))
-  end
-
+  
 end

@@ -1,19 +1,18 @@
 <a href="/">GO Back<a>
 <h1><%= @lists[@id]['word'] %></h1>
-<p>Defination:</p>
+<p id ="defination">Defination:</p>
 <ul>
-  <% @lists[@id]['defination'].each do |item|%>
-      <li><%= item%></li>
+	<!-- It will showcase all defination of word -->
+	<% @lists[@id]['defination'].each do |item|%>
+    	<li><%= item%></li>
     <%end%>
 </ul>
-
-
+<!-- Form for add new defination -->
 <form class="" action="/add_defination/<%= @id %>" method="post">
-
-  <div class="input-group">
-    <span class="input-group-addon">New Defination</span>
-    <input type="text" class="form-control" name="defination" placeholder="Defination">
-  </div>
-  <br>
-   <button type="submit" id="add_new_defination" class="btn btn-success">Add</button>
+	<div class="input-group">
+		<span class="input-group-addon">New Defination</span>
+		<input type="text" class="form-control" name="defination" placeholder="Defination">
+	</div>
+	<br>
+	<button type="submit" id="add_new_defination" class="btn btn-success">Add</button>
 </form>

@@ -15,9 +15,13 @@ _It will find show words with defination and it will also add new word with one 
 
 ## Specifications
 
-* _@@_
-* Example input:
-* Example output:
+* _It will allow user to add new words in list_
+* Example input:'practice' 
+* Example output: page will have "practice" word in list
+
+* _After click on word(practice) it will allow user to add one or multiple defination of word_
+* Example input: n as 'A customary way of operation or behavior' 
+* Example result: page will display "A customary way of operation or behavior" as a defination of word(practice)
 
 ## Known Bugs
 

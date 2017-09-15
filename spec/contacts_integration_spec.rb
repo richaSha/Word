@@ -4,29 +4,35 @@ Capybara.app = Sinatra::Application
 set(:show_exceptions, false)
 
 describe('Home page') do
-  it('opens home page as default page', {:type => :feature}) do
+  it('opens home page as default page with list of words', {:type => :feature}) do
     visit('/')
-    expect(page.find_by_id('submit_button')).to have_content("Submit")
+    expect(page.find_by_id('consider')).to have_content("consider")
   end
 end
 
-describe('Contacts details') do
-  it('opens home page as default page', {:type => :feature}) do
+describe('Home page') do
+  it('should allow to add new word and display in home page word list', {:type => :feature}) do
     visit('/')
-    fill_in('first_name', :with => 'Richa')
-    fill_in('last_name', :with => 'Shaurbh')
-    fill_in('company', :with => 'Microsoft')
-    fill_in('contact_no', :with => '12345')
-    fill_in('contact_details', :with => 'beltown, Seattle,Washington')
-    click_button('Submit')
-    expect(page.find('//a')).to have_content("Richa Shaurbh")
+    fill_in('word', :with => 'practice')
+    click_button('Add')
+    expect(page.find_by_id('practice')).to have_content("practice")
   end
 end
 
-describe('Contacts details') do
-  it('opens home page as default page', {:type => :feature}) do
+describe('Word defination page') do
+  it('should take to another user to page for showing word drfination', {:type => :feature}) do
     visit('/')
-    click_link 'Richa Shaurbh'
-    expect(page.find_by_id('edit_button')).to have_content("Edit")
+    click_link('consider')
+    expect(page.find_by_id('defination')).to have_content("Defination:")
+  end
+end
+
+describe('Word defination page') do
+  it('should allow user to add defination', {:type => :feature}) do
+    visit('/')
+    click_link('practice')
+    fill_in('defination', :with => 'A customary way of operation or behavior')
+    click_button('Add')
+    expect(page).to have_content("A customary way of operation or behavior")
   end
 end
